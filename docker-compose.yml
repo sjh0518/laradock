@@ -186,6 +186,12 @@ services:
         - "${WORKSPACE_VUE_CLI_SERVE_HOST_PORT}:8080"
         - "${WORKSPACE_VUE_CLI_UI_HOST_PORT}:8000"
         - "${WORKSPACE_ANGULAR_CLI_SERVE_HOST_PORT}:4200"
+        #ADD>>> PUKYO.shenjianghui 2021-10-20 禅道0 Workspace容器为前端npm run dev 暴露8006端口
+        - "8006:8006"
+        #<<<ADD PUKYO.shenjianghui 2021-10-20 禅道0 Workspace容器为前端npm run dev 暴露8006端口
+        #ADD>>> PUKYO.shenjianghui 2021-10-20 禅道0 Workspace容器为laravel_echo_server 暴露6001端口
+        - "6001:6001"
+        #<<<ADD PUKYO.shenjianghui 2021-10-20 禅道0 Workspace容器为laravel_echo_server 暴露6001端口
       tty: true
       environment:
         - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
