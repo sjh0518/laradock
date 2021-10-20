@@ -712,10 +712,15 @@ ENV NVM_DIR /home/laradock/.nvm
 ARG NVM_NODEJS_ORG_MIRROR
 ENV NVM_NODEJS_ORG_MIRROR ${NVM_NODEJS_ORG_MIRROR}
 
+COPY ./nvm_install.sh /home/laradock/nvm_install.sh
+
 RUN if [ ${INSTALL_NODE} = true ]; then \
     # Install nvm (A Node Version Manager)
     mkdir -p $NVM_DIR && \
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash \
+    #EDIT>>> PUKYO.shenjianghui 2021-10-20 禅道0 docker构建workspace镜像中下载失败，先手工下载好置于nvm_install.sh文件，直接读取执行
+#    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash \
+    echo /home/laradock/nvm_install.sh | bash \
+    #<<<EDIT PUKYO.shenjianghui 2021-10-20 禅道0 docker构建workspace镜像中下载失败，先手工下载好置于nvm_install.sh文件，直接读取执行
         && . $NVM_DIR/nvm.sh \
         && nvm install ${NODE_VERSION} \
         && nvm use ${NODE_VERSION} \
